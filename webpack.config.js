@@ -1,7 +1,14 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
 
 module.exports = {
+  resolve: {
+    extensions: [".js", ".json"],
+    alias: {
+      Styles: path.resolve(__dirname, 'src/styles'),
+    }
+  },
   module: {
     rules: [
       {
@@ -24,9 +31,19 @@ module.exports = {
         test: /\.(s)?css$/,
         use: [
           process.env.NODE_ENV !== 'production' ? 'style-loader' :
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "sass-loader"
+            MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+              modules: true,
+              localIdentName: "[local]___[hash:base64:5]",
+            }
+          },
+          {
+            loader: "sass-loader",
+          },
+
         ]
       }
     ]
