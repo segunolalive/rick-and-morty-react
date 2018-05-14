@@ -1,13 +1,19 @@
-import express from 'express';
+const express = require('express');
+const path = require('path');
+const http = require('http');;
 
 const app = express();
 
-const PORT = process.env.PORT || 5700;
+app.use('/', express.static(path.join(__dirname, '/dist')));
 
-app.get('*', (req, res, next) => {
-  res.send('SERVER RESPONDED!!!');
-})
+app.get('*', (req, res) => res.sendFile(
+  path.join(__dirname, 'dist', 'index.html'))
+);
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-})
+const server = http.createServer(app)
+
+const port = process.env.PORT || 8080;
+
+server.listen(port, () => {
+  console.log(`server started on ${port}`);
+});
