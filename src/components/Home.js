@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Character from './Character'
+import Styles from 'Styles/home.scss';
 
 
 export default class Home extends React.Component {
@@ -21,8 +22,11 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.characters.map(character => <Character key={character.id} {...character} />)}
+      <div className={Styles.home}>
+        {
+          this.state.characters.map(character =>
+          <Character key={character.id} {...character} />)
+        }
       </div>
     )
   }
