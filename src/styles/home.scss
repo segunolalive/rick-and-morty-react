@@ -1,10 +1,13 @@
 .home {
   display: flex;
+  flex-wrap: wrap;
+  margin: 30px;
+  justify-content: space-around;
+  align-content: center;
 }
 
 @supports (display: grid) {
   .home {
-    margin: 30px;
     display: grid;
     grid-gap: 30px;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

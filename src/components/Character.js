@@ -10,8 +10,8 @@ const Character = (props) => (
         <img src={props.image} alt={props.name} />
       </div>
       <div className={styles.description}>
-        <h3>Name: {props.name}</h3>
-        <p>Status: {props.status}</p>
+        <h3 className={styles.name}>Name: {props.name}</h3>
+        <p className={styles.status}>Status: {props.status}</p>
       </div>
     </div>
   </Link>
